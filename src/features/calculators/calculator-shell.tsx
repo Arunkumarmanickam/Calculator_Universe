@@ -29,8 +29,8 @@ export function CalculatorShell({ calc }: CalculatorShellProps) {
   return (
     <div className="space-y-8">
       <div className="relative">
-        <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-orange-100/50 via-rose-100/50 to-purple-100/50 dark:from-orange-900/10 dark:via-rose-900/10 dark:to-purple-900/10 rounded-3xl -z-10 blur-xl" />
-        <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-600 to-rose-600 dark:from-orange-400 dark:to-rose-400 bg-clip-text text-transparent">
+        <div className="absolute inset-0 -inset-y-2 bg-gradient-to-r from-orange-100/50 via-rose-100/50 to-purple-100/50 dark:from-orange-900/10 dark:via-rose-900/10 dark:to-purple-900/10 rounded-3xl -z-10 blur-xl" />
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-orange-600 to-rose-600 dark:from-orange-400 dark:to-rose-400 bg-clip-text text-transparent">
           {calc.meta.title}
         </h1>
         <p className="text-muted-foreground mt-2 leading-relaxed">{calc.meta.description}</p>
@@ -38,7 +38,7 @@ export function CalculatorShell({ calc }: CalculatorShellProps) {
 
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="relative">
-          <div className="absolute -inset-1 bg-gradient-to-br from-orange-200/50 via-rose-200/50 to-purple-200/50 dark:from-orange-800/20 dark:via-rose-800/20 dark:to-purple-800/20 rounded-2xl blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-200/50 via-rose-200/50 to-purple-200/50 dark:from-orange-800/20 dark:via-rose-800/20 dark:to-purple-800/20 rounded-2xl blur-md" />
           <Card className="relative rounded-2xl border-2">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -65,7 +65,7 @@ export function CalculatorShell({ calc }: CalculatorShellProps) {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-1 bg-gradient-to-br from-purple-200/50 via-pink-200/50 to-orange-200/50 dark:from-purple-800/20 dark:via-pink-800/20 dark:to-orange-800/20 rounded-2xl blur-sm" />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-200/50 via-pink-200/50 to-orange-200/50 dark:from-purple-800/20 dark:via-pink-800/20 dark:to-orange-800/20 rounded-2xl blur-md" />
           <Card className="relative rounded-2xl border-2">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">

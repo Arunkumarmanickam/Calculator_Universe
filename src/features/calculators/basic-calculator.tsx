@@ -99,7 +99,7 @@ export function BasicCalculator() {
       className="relative rounded-2xl border-2 bg-card p-5 shadow-xl w-full max-w-xs mx-auto"
       onKeyDown={handleKeyDown}
     >
-      <div className="absolute -inset-1 bg-gradient-to-br from-orange-200/50 via-rose-200/50 to-purple-200/50 dark:from-orange-800/20 dark:via-rose-800/20 dark:to-purple-800/20 rounded-2xl blur-sm -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-orange-200/50 via-rose-200/50 to-purple-200/50 dark:from-orange-800/20 dark:via-rose-800/20 dark:to-purple-800/20 rounded-2xl blur-md -z-10" />
       <input
         ref={inputRef}
         type="text"

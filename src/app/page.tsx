@@ -71,7 +71,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl bg-gradient-to-r from-orange-600 via-rose-600 to-purple-600 dark:from-orange-400 dark:via-rose-400 dark:to-purple-400 bg-clip-text text-transparent"
+              className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl bg-gradient-to-r from-orange-600 via-rose-600 to-purple-600 dark:from-orange-400 dark:via-rose-400 dark:to-purple-400 bg-clip-text text-transparent"
             >
               Calculator Universe
             </motion.h1>
