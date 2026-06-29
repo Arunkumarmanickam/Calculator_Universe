@@ -1,12 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CATEGORIES } from '@/types/calculator'
 import type { CalculatorCategory } from '@/types/calculator'
-import { getCalculatorsByCategory } from '@/lib/calculator-registry'
 
 const categoryGradients: Record<string, string> = {
   finance: 'from-orange-400 to-rose-500',
@@ -19,12 +18,24 @@ const categoryGradients: Record<string, string> = {
   devtools: 'from-purple-400 to-pink-500',
 }
 
+const categoryIcons: Record<string, string> = {
+  finance: '📊',
+  health: '❤️',
+  education: '📚',
+  math: '∑',
+  construction: '🔨',
+  datetime: '🕐',
+  conversion: '📏',
+  devtools: '💻',
+}
+
 export function MobileNav({ open, onClose }: { open: boolean; onClose: () => void }) {
   useEffect(() => {
-    if (open) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = ''
+    document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
+
+  const categories = Object.entries(CATEGORIES) as [CalculatorCategory, { label: string; icon: string; description: string }][]
 
   return (
     <AnimatePresence>
@@ -34,20 +45,20 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-40 bg-black/50"
             onClick={onClose}
           />
           <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-            className="fixed inset-y-0 right-0 z-50 w-full max-w-sm border-l-2 bg-background shadow-2xl overflow-y-auto"
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="fixed top-0 right-0 bottom-0 left-0 z-50 bg-background shadow-2xl overflow-y-auto"
           >
-            <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 border-b bg-background/80 backdrop-blur-lg">
+            <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 border-b bg-background">
               <span className="font-bold text-lg bg-gradient-to-r from-orange-600 to-rose-600 dark:from-orange-400 dark:to-rose-400 bg-clip-text text-transparent">
-                Categories
+                Menu
               </span>
               <button
                 onClick={onClose}
@@ -58,41 +69,33 @@ export function MobileNav({ open, onClose }: { open: boolean; onClose: () => voi
               </button>
             </div>
 
-            <div className="p-4 space-y-3">
+            <div className="p-4">
               <Link
                 href="/"
                 onClick={onClose}
-                className="block px-4 py-3 rounded-xl text-sm font-medium hover:bg-muted/50 transition-colors"
+                className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-medium hover:bg-muted/50 transition-colors mb-2"
               >
+                <span className="text-lg">🏠</span>
                 Home
               </Link>
 
-              {(Object.entries(CATEGORIES) as [CalculatorCategory, { label: string; icon: string; description: string }][]).map(([key, cat]) => {
-                const calculators = getCalculatorsByCategory(key)
-                return (
-                  <div key={key} className="rounded-xl border overflow-hidden">
-                    <Link
-                      href={`/calculator/${key}`}
-                      onClick={onClose}
-                      className={`flex items-center gap-3 px-4 py-3 bg-gradient-to-r ${categoryGradients[key]} text-white font-medium text-sm`}
-                    >
-                      {cat.label}
-                    </Link>
-                    <div className="divide-y">
-                      {calculators.map((calc) => (
-                        <Link
-                          key={calc.id}
-                          href={`/calculator/${key}/${calc.id}`}
-                          onClick={onClose}
-                          className="block px-4 py-2.5 text-sm hover:bg-muted/30 transition-colors pl-8"
-                        >
-                          {calc.title}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )
-              })}
+              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider px-4 py-3">
+                Categories
+              </div>
+
+              <div className="space-y-1.5">
+                {categories.map(([key, cat]) => (
+                  <Link
+                    key={key}
+                    href={`/calculator/${key}`}
+                    onClick={onClose}
+                    className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-base font-medium bg-gradient-to-r ${categoryGradients[key]} text-white hover:opacity-90 transition-all`}
+                  >
+                    <span className="text-lg">{categoryIcons[key]}</span>
+                    {cat.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </motion.div>
         </>
