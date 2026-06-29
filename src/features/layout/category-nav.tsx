@@ -67,7 +67,7 @@ export function CategoryNav() {
   const categories = Object.entries(CATEGORIES) as [CalculatorCategory, { label: string }][]
 
   return (
-    <nav className="hidden lg:flex items-center gap-0.5 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+    <nav className="hidden lg:flex items-center gap-0.5 min-w-0 overflow-x-auto [&::-webkit-scrollbar]:hidden">
       <Link href="/" className="px-3 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all">
         Home
       </Link>
